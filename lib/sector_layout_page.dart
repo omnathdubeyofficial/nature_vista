@@ -3,21 +3,21 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class MasterLayoutPage extends StatefulWidget {
-  const MasterLayoutPage({Key? key}) : super(key: key);
+class SectorLayoutPage extends StatefulWidget {
+  const SectorLayoutPage({Key? key}) : super(key: key);
 
   @override
-  State<MasterLayoutPage> createState() => _MasterLayoutPageState();
+  State<SectorLayoutPage> createState() => _SectorLayoutPageState();
 }
 
-class _MasterLayoutPageState extends State<MasterLayoutPage> with TickerProviderStateMixin {
+class _SectorLayoutPageState extends State<SectorLayoutPage> with TickerProviderStateMixin {
   bool _isRightAligned = false;
   late AnimationController _fadeController;
   late Animation<double> _fadeAnimation;
   final TransformationController _transformationController = TransformationController();
   bool _isZoomed = false;
 
-  final String imagePath = "assets/plans/master_layout.jpg";
+  final String imagePath = "assets/plans/typical_untag.jpg";
 
   @override
   void initState() {
@@ -30,12 +30,12 @@ class _MasterLayoutPageState extends State<MasterLayoutPage> with TickerProvider
 
   Future<void> _loadAlignment() async {
     final prefs = await SharedPreferences.getInstance();
-    setState(() => _isRightAligned = prefs.getBool('master_layout_btns_right') ?? false);
+    setState(() => _isRightAligned = prefs.getBool('sector_layout_btns_right') ?? false);
   }
 
   Future<void> _saveAlignment() async {
     final prefs = await SharedPreferences.getInstance();
-    await prefs.setBool('master_layout_btns_right', _isRightAligned);
+    await prefs.setBool('sector_layout_btns_right', _isRightAligned);
   }
 
   @override
@@ -69,6 +69,7 @@ class _MasterLayoutPageState extends State<MasterLayoutPage> with TickerProvider
         opacity: _fadeAnimation,
         child: Stack(
           children: [
+            // Decorative Background Elements
             // MAIN IMAGE VIEWER
             Positioned.fill(
               child: GestureDetector(
@@ -79,7 +80,6 @@ class _MasterLayoutPageState extends State<MasterLayoutPage> with TickerProvider
                   maxScale: 10.0,
                   boundaryMargin: const EdgeInsets.all(double.infinity),
                   onInteractionEnd: (details) {
-                    // Update zoom state if user pinches back to 1.0
                     final scale = _transformationController.value.getMaxScaleOnAxis();
                     if (scale <= 1.01 && _isZoomed) {
                       setState(() => _isZoomed = false);
@@ -123,11 +123,11 @@ class _MasterLayoutPageState extends State<MasterLayoutPage> with TickerProvider
                 child: Container(
                   padding: const EdgeInsets.all(8),
                   decoration: BoxDecoration(
-                    color: Colors.white.withOpacity(0.8),
+                    color: Colors.white.withOpacity(0.85),
                     borderRadius: BorderRadius.circular(50),
                     boxShadow: [
                       BoxShadow(
-                        color: const Color(0xFFFF9100).withOpacity(0.1),
+                        color: Colors.black.withOpacity(0.05),
                         blurRadius: 20,
                         spreadRadius: 2,
                       ),
@@ -168,15 +168,7 @@ class ExperienceIconButton extends StatelessWidget {
   final VoidCallback onTap;
   final bool isDestructive;
   final String? tooltip;
-
-  const ExperienceIconButton({
-    Key? key,
-    required this.icon,
-    required this.onTap,
-    this.isDestructive = false,
-    this.tooltip,
-  }) : super(key: key);
-
+  const ExperienceIconButton({Key? key, required this.icon, required this.onTap, this.isDestructive = false, this.tooltip}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Tooltip(
@@ -192,8 +184,8 @@ class ExperienceIconButton extends StatelessWidget {
             decoration: BoxDecoration(
               gradient: LinearGradient(
                 colors: isDestructive 
-                  ? [const Color(0xFFFF9100).withOpacity(0.1), const Color(0xFFFFB74D).withOpacity(0.05)]
-                  : [const Color(0xFFFF9100), const Color(0xFFFFB74D)],
+                  ? [const Color(0xFFFFE0B2), const Color(0xFFFFF3E0)]
+                  : [const Color(0xFFFF9100), const Color(0xFFFFAB40)],
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
               ),
@@ -207,11 +199,7 @@ class ExperienceIconButton extends StatelessWidget {
                   ),
               ],
             ),
-            child: Icon(
-              icon, 
-              color: isDestructive ? const Color(0xFFFF9100) : Colors.white, 
-              size: 28,
-            ),
+            child: Icon(icon, color: isDestructive ? const Color(0xFFE65100) : Colors.white, size: 28),
           ),
         ),
       ),

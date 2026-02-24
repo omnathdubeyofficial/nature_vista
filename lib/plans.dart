@@ -24,7 +24,7 @@ class _PlansPageState extends State<PlansPage> with TickerProviderStateMixin {
   late AnimationController _fadeController;
   late Animation<double> _fadeAnimation;
 
-  // Max 2 images
+  // Max 4 images
   final List<_PlanImageState> _activeImages = []; // paint order matters (last = top)
 
   final List<String> menuTitles = [
@@ -106,8 +106,9 @@ class _PlansPageState extends State<PlansPage> with TickerProviderStateMixin {
 
   int? _firstEmptySlot() {
     final used = _activeImages.map((e) => e.slot).toSet();
-    if (!used.contains(0)) return 0;
-    if (!used.contains(1)) return 1;
+    for (int i = 0; i < 4; i++) {
+        if (!used.contains(i)) return i;
+    }
     return null;
   }
 
@@ -128,16 +129,17 @@ class _PlansPageState extends State<PlansPage> with TickerProviderStateMixin {
       return;
     }
 
-    // Max 2
-    if (_activeImages.length >= 2) {
+    // Max 4
+    if (_activeImages.length >= 4) {
       showDialog(
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
+            backgroundColor: const Color(0xFFFBF9F6),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(20),
+              side: const BorderSide(color: Color(0xFFFF9100), width: 1),
             ),
-            backgroundColor: const Color(0xFFFFFDE7),
             title: Row(
               children: [
                 const Icon(
@@ -147,9 +149,9 @@ class _PlansPageState extends State<PlansPage> with TickerProviderStateMixin {
                 ),
                 const SizedBox(width: 12),
                 Text(
-                  'Maximum Limit Reached',
+                  'Comparison Limit',
                   style: GoogleFonts.cinzel(
-                    fontSize: 18,
+                    fontSize: 20,
                     fontWeight: FontWeight.bold,
                     color: const Color(0xFFE65100),
                   ),
@@ -161,21 +163,21 @@ class _PlansPageState extends State<PlansPage> with TickerProviderStateMixin {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'You can view a maximum of 2 floor plans at once for easy comparison.',
-                  style: GoogleFonts.cinzel(
-                    fontSize: 14,
+                  'To ensure a seamless comparison experience, you can view up to 4 floor plans simultaneously.',
+                  style: GoogleFonts.inter(
+                    fontSize: 15,
                     color: Colors.black87,
                     height: 1.5,
                   ),
                 ),
-                const SizedBox(height: 12),
+                const SizedBox(height: 15),
                 Container(
                   padding: const EdgeInsets.all(12),
                   decoration: BoxDecoration(
-                    color: Colors.orange.withOpacity(0.1),
-                    borderRadius: BorderRadius.circular(8),
+                    color: const Color(0xFFFFF3E0),
+                    borderRadius: BorderRadius.circular(12),
                     border: Border.all(
-                      color: const Color(0xFFE65100).withOpacity(0.3),
+                      color: const Color(0xFFFFB74D).withOpacity(0.5),
                     ),
                   ),
                   child: Row(
@@ -185,11 +187,11 @@ class _PlansPageState extends State<PlansPage> with TickerProviderStateMixin {
                         color: Color(0xFFE65100),
                         size: 20,
                       ),
-                      const SizedBox(width: 8),
+                      const SizedBox(width: 10),
                       Expanded(
                         child: Text(
-                          'Please close one plan by tapping the X button to view another.',
-                          style: GoogleFonts.cinzel(
+                          'Simply close one plan to explore another and continue your journey.',
+                          style: GoogleFonts.inter(
                             fontSize: 13,
                             color: Colors.black87,
                             fontWeight: FontWeight.w500,
@@ -202,24 +204,29 @@ class _PlansPageState extends State<PlansPage> with TickerProviderStateMixin {
               ],
             ),
             actions: [
-              TextButton(
-                onPressed: () => Navigator.of(context).pop(),
-                style: TextButton.styleFrom(
-                  backgroundColor: const Color(0xFFE65100),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8),
+              Padding(
+                padding: const EdgeInsets.only(right: 8, bottom: 8),
+                child: TextButton(
+                  onPressed: () => Navigator.of(context).pop(),
+                  style: TextButton.styleFrom(
+                    backgroundColor: const Color(0xFFE65100),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 24,
+                      vertical: 14,
+                    ),
+                    elevation: 2,
                   ),
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 24,
-                    vertical: 12,
-                  ),
-                ),
-                child: Text(
-                  'OK',
-                  style: GoogleFonts.cinzel(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 14,
+                  child: Text(
+                    'UNDERSTOOD',
+                    style: GoogleFonts.cinzel(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 13,
+                      letterSpacing: 1,
+                    ),
                   ),
                 ),
               ),
@@ -432,6 +439,7 @@ class _PlansPageState extends State<PlansPage> with TickerProviderStateMixin {
                         // Determine if single or dual view
                         final isSingleView = _activeImages.length == 1;
                         final half = w / 2;
+                        final count = _activeImages.length;
 
                         if (_activeImages.isEmpty) {
                           return Center(
@@ -450,40 +458,9 @@ class _PlansPageState extends State<PlansPage> with TickerProviderStateMixin {
                         return Stack(
                           clipBehavior: Clip.none,
                           children: [
-                            // Divider when 2 images are active
-                            if (!isSingleView)
-                              Positioned(
-                                left: half - 1,
-                                top: 0,
-                                bottom: 0,
-                                child: Container(width: 2, color: Colors.grey[250]),
-                              ),
-
                             // Paint in list order (last on top)
                             for (final img in _activeImages)
-                              AnimatedPositioned(
-                                duration: const Duration(milliseconds: 600),
-                                curve: Curves.easeInOutCubic,
-                                left: isSingleView 
-                                    ? 0 
-                                    : (img.slot == 0 ? 0 : half),
-                                top: 0,
-                                width: isSingleView ? w : half,
-                                height: h,
-                                child: FadeTransition(
-                                  opacity: img.fadeAnimation,
-                                  child: FadeTransition(
-                                    opacity: _fadeAnimation,
-                                    child: InteractiveImageViewer(
-                                      key: ValueKey('plan_${img.planIndex}_${img.slot}'),
-                                      imagePath: imagePaths[img.planIndex],
-                                      title: menuTitles[img.planIndex],
-                                      onClose: () => _removeImage(img.planIndex),
-                                      onFocus: () => _focusImage(img.planIndex),
-                                    ),
-                                  ),
-                                ),
-                              ),
+                              _buildPositionedImage(img, count, w, h),
                           ],
                         );
                       },
@@ -531,6 +508,42 @@ class _PlansPageState extends State<PlansPage> with TickerProviderStateMixin {
                 ),
               ),
             ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildPositionedImage(_PlanImageState img, int count, double w, double h) {
+    double left = 0, top = 0, width = w, height = h;
+
+    if (count == 2) {
+      width = w / 2;
+      left = (img.slot == 0) ? 0 : width;
+    } else if (count >= 3) {
+      width = w / 2;
+      height = h / 2;
+      left = (img.slot % 2 == 0) ? 0 : width;
+      top = (img.slot < 2) ? 0 : height;
+    }
+
+    return AnimatedPositioned(
+      duration: const Duration(milliseconds: 600),
+      curve: Curves.easeInOutCubic,
+      left: left,
+      top: top,
+      width: width,
+      height: height,
+      child: FadeTransition(
+        opacity: img.fadeAnimation,
+        child: FadeTransition(
+          opacity: _fadeAnimation,
+          child: InteractiveImageViewer(
+            key: ValueKey('plan_${img.planIndex}_${img.slot}'),
+            imagePath: imagePaths[img.planIndex],
+            title: menuTitles[img.planIndex],
+            onClose: () => _removeImage(img.planIndex),
+            onFocus: () => _focusImage(img.planIndex),
           ),
         ),
       ),

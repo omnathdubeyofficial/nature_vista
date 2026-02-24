@@ -41,12 +41,12 @@ class _WalkthroughPageState extends State<WalkthroughPage>
         // On Windows, load directly from the executable's relative path for "mini second" loading
         final String exePath = Platform.resolvedExecutable;
         final String exeDir = File(exePath).parent.path;
-        videoPath = "$exeDir\\data\\flutter_assets\\assets/images/bg.mp4";
+        videoPath = "$exeDir\\data\\flutter_assets\\assets/tourvideo/wolkthrow.mp4";
         
         // Fallback for debug mode or if the file isn't at the expected production path
         if (!await File(videoPath).exists()) {
           debugPrint("Production video path not found, falling back to asset loading...");
-          final byteData = await rootBundle.load('assets/images/bg.mp4');
+          final byteData = await rootBundle.load('assets/tourvideo/wolkthrow.mp4');
           final tempDir = await getTemporaryDirectory();
           final file = File('${tempDir.path}/bg.mp4');
           await file.writeAsBytes(byteData.buffer.asUint8List());
@@ -54,7 +54,7 @@ class _WalkthroughPageState extends State<WalkthroughPage>
         }
       } else {
         // For other platforms, keep the existing logic
-        final byteData = await rootBundle.load('assets/images/bg.mp4');
+        final byteData = await rootBundle.load('assets/tourvideo/wolkthrow.mp4');
         final tempDir = await getTemporaryDirectory();
         final file = File('${tempDir.path}/bg.mp4');
         await file.writeAsBytes(byteData.buffer.asUint8List());

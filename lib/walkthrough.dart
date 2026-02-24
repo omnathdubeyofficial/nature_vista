@@ -9,11 +9,13 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class WalkthroughPage extends StatefulWidget {
-  const WalkthroughPage({Key? key}) : super(key: key);
+  final String? videoPath;
+  const WalkthroughPage({Key? key, this.videoPath}) : super(key: key);
 
   @override
   State<WalkthroughPage> createState() => _WalkthroughPageState();
 }
+
 
 class _WalkthroughPageState extends State<WalkthroughPage>
     with TickerProviderStateMixin {
@@ -37,28 +39,41 @@ class _WalkthroughPageState extends State<WalkthroughPage>
 
   Future<void> _initVideo() async {
     try {
-      String videoPath;
+      final String exePath = Platform.resolvedExecutable;
+      final String exeDir = File(exePath).parent.path;
       
-      if (Platform.isWindows) {
-        final String exePath = Platform.resolvedExecutable;
-        final String exeDir = File(exePath).parent.path;
-        videoPath = "$exeDir\\data\\flutter_assets\\assets/images/bg.mp4";
-        
-        if (!await File(videoPath).exists()) {
-          debugPrint("Production video path not found, falling back to asset loading...");
-          final byteData = await rootBundle.load('assets/images/bg.mp4');
+      String videoPath = widget.videoPath ?? (Platform.isWindows 
+          ? "$exeDir\\data\\flutter_assets\\assets/tourvideo/wolkthrow.mp4" 
+          : "assets/tourvideo/wolkthrow.mp4");
+      
+      if (widget.videoPath == null) {
+        if (Platform.isWindows) {
+          if (!await File(videoPath).exists()) {
+            debugPrint("Production video path not found, falling back to asset loading...");
+            final byteData = await rootBundle.load('assets/tourvideo/wolkthrow.mp4');
+            final tempDir = await getTemporaryDirectory();
+            final file = File('${tempDir.path}/bg.mp4');
+            await file.writeAsBytes(byteData.buffer.asUint8List());
+            videoPath = file.path;
+          }
+        } else {
+          final byteData = await rootBundle.load('assets/tourvideo/wolkthrow.mp4');
           final tempDir = await getTemporaryDirectory();
           final file = File('${tempDir.path}/bg.mp4');
           await file.writeAsBytes(byteData.buffer.asUint8List());
           videoPath = file.path;
         }
       } else {
-        final byteData = await rootBundle.load('assets/images/bg.mp4');
-        final tempDir = await getTemporaryDirectory();
-        final file = File('${tempDir.path}/bg.mp4');
-        await file.writeAsBytes(byteData.buffer.asUint8List());
-        videoPath = file.path;
+        // If external path is provided, ensure it's loaded from assets if it's a relative path
+        if (!videoPath.startsWith('/') && !videoPath.contains(':')) {
+          final byteData = await rootBundle.load(videoPath);
+          final tempDir = await getTemporaryDirectory();
+          final file = File('${tempDir.path}/${videoPath.split('/').last}');
+          await file.writeAsBytes(byteData.buffer.asUint8List());
+          videoPath = file.path;
+        }
       }
+
 
       final player = Player();
       final controller = VideoController(player);

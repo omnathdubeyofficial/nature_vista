@@ -44,12 +44,12 @@ class _HomePageState extends State<HomePage> {
       if (Platform.isWindows) {
         // On Windows, load directly from the executable's relative path for "mini second" loading
         final String exeDir = File(Platform.resolvedExecutable).parent.path;
-        videoPath = "$exeDir\\data\\flutter_assets\\assets/images/bg.mp4";
+        videoPath = "$exeDir\\data\\flutter_assets\\assets/tourvideo/wolkthrow.mp4";
         
         // Fallback for debug mode or if the file isn't at the expected production path
         if (!await File(videoPath).exists()) {
           debugPrint("Production video path not found, falling back to asset loading...");
-          final byteData = await rootBundle.load('assets/images/bg.mp4');
+          final byteData = await rootBundle.load('assets/tourvideo/wolkthrow.mp4');
           final tempDir = await getTemporaryDirectory();
           final file = File('${tempDir.path}/bg.mp4');
           await file.writeAsBytes(byteData.buffer.asUint8List(), flush: true);
@@ -57,7 +57,7 @@ class _HomePageState extends State<HomePage> {
         }
       } else {
         // For other platforms, keep existing logic
-        final byteData = await rootBundle.load('assets/images/bg.mp4');
+        final byteData = await rootBundle.load('assets/tourvideo/wolkthrow.mp4');
         final tempDir = await getTemporaryDirectory();
         final file = File('${tempDir.path}/bg.mp4');
         await file.writeAsBytes(byteData.buffer.asUint8List(), flush: true);

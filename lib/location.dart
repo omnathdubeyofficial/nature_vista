@@ -237,7 +237,7 @@ class _LocationPageState extends State<LocationPage>
                       ..rotateZ(_rotation)               // Then Rotate
                       ..scale(_scale),                   // Then Scale
                     child: Image.asset(
-                      'assets/plans/MASTER_LAYOUT_NATURE_VISTA+2_(untag).jpg',
+                      'assets/plans/master_layout.jpg',
                       fit: BoxFit.contain, // Shows full image
                     ),
                   ),

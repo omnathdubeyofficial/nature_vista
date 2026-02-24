@@ -41,7 +41,7 @@ class _HomePageState extends State<HomePage> {
       );
 
       // Copy asset to temp file for reliable playback on Windows
-      final byteData = await rootBundle.load('assets/images/bg.mp4');
+      final byteData = await rootBundle.load('assets/tourvideo/wolkthrow.mp4');
       final tempDir = await getTemporaryDirectory();
       final file = File('${tempDir.path}/bg.mp4');
       await file.writeAsBytes(byteData.buffer.asUint8List(), flush: true);

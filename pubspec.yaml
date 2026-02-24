@@ -25,6 +25,7 @@ dependencies:
   shelf: ^1.4.1
   shelf_static: ^1.1.2
   shared_preferences: ^2.5.3
+  pdfrx: ^2.1.5
 
 dev_dependencies:
   flutter_test:
@@ -56,7 +57,12 @@ flutter:
     - assets/audio/
     - assets/plans/
     - assets/logo/
-    - assets/add/
+    - assets/pdf/
+    - assets/newback/plansbackgraund.png
+    - assets/newback/tourbackgaund.png
+    - assets/buildingone/
+    - assets/buildingtwo/
     - assets/NV_1st_launch/
     - assets/build/
-    - assets/images/bg.mp4
+    - assets/tourvideo/wolkthrow.mp4
+    - assets/tourvideo/
