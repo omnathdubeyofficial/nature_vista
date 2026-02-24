@@ -12,13 +12,13 @@ class _AmenitiesPageState extends State<AmenitiesPage> with TickerProviderStateM
     'assets/build/Hero Cam.jpg',
     'assets/build/Aerial Cam .jpg',
     'assets/build/Entry Gate Cam.jpg',
-    'assets/amenities/Club House (untag).jpg',
-    'assets/amenities/Kids play area (untag) - Photo.jpg',
-    'assets/amenities/Kids play area (untag).jpg',
-    'assets/amenities/Swimming pool (untag) - Photo.jpg',
-    'assets/amenities/Swimming pool (untag).jpg',
-    'assets/amenities/Yoga-meditation (untag).jpg',
-    'assets/amenities/Gym (untag).jpg',
+    'assets/build/Balcony Cam_Day.jpg',
+    'assets/build/Balcony_Cam Night.jpg',
+    'assets/build/Cafe Area.jpg',
+    'assets/build/CAM STORY WALK.jpg',
+    'assets/build/Kidsplay cam.jpg',
+    'assets/build/Music Cam.jpg',
+    'assets/build/PoolCam.png',
   ];
 
   int _index = 0;

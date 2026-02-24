@@ -111,9 +111,9 @@ class _TourVideoPageState extends State<TourVideoPage> with TickerProviderStateM
                         children: [
                           _videoButton('CITY REVEALER', Icons.play_circle_fill_rounded, 'assets/tourvideo/Ayodhya City Revealer CGI HD.mp4'),
                           const SizedBox(height: 18),
-                          _videoButton('CITY TEASER 1', Icons.play_circle_fill_rounded, 'assets/tourvideo/Ayodhya City Teaser 1.mp4'),
+                          _videoButton('CITY TEASER 1', Icons.play_circle_fill_rounded, 'assets/tourvideo/Ayodhya City Teaser 1.mp4', isReel: true),
                           const SizedBox(height: 18),
-                          _videoButton('CITY TEASER 2', Icons.play_circle_fill_rounded, 'assets/tourvideo/Ayodhya City Teaser 2.mp4'),
+                          _videoButton('CITY TEASER 2', Icons.play_circle_fill_rounded, 'assets/tourvideo/Ayodhya City Teaser 2.mp4', isReel: true),
                           const SizedBox(height: 18),
                           _videoButton('LOGO FORMATION', Icons.play_circle_fill_rounded, 'assets/tourvideo/Ayodhya Logo Formation vvv2.mp4'),
                           const SizedBox(height: 18),
@@ -173,11 +173,11 @@ class _TourVideoPageState extends State<TourVideoPage> with TickerProviderStateM
     return Positioned(child: child);
   }
 
-  Widget _videoButton(String label, IconData icon, String videoPath) {
+  Widget _videoButton(String label, IconData icon, String videoPath, {bool isReel = false}) {
     return GestureDetector(
       onTap: () => Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => WalkthroughPage(videoPath: videoPath)),
+        MaterialPageRoute(builder: (context) => WalkthroughPage(videoPath: videoPath, isReel: isReel)),
       ),
       child: SizedBox(
         width: 320,

@@ -10,7 +10,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class WalkthroughPage extends StatefulWidget {
   final String? videoPath;
-  const WalkthroughPage({Key? key, this.videoPath}) : super(key: key);
+  final bool isReel;
+  const WalkthroughPage({Key? key, this.videoPath, this.isReel = false}) : super(key: key);
 
   @override
   State<WalkthroughPage> createState() => _WalkthroughPageState();
@@ -204,7 +205,9 @@ class _WalkthroughPageState extends State<WalkthroughPage>
               child: AnimatedContainer(
                 duration: const Duration(milliseconds: 400),
                 curve: Curves.easeInOutCubic,
-                width: _isFullScreen ? size.width : size.width * 0.9,
+                width: _isFullScreen 
+                    ? size.width 
+                    : (widget.isReel ? (size.height * 0.8) * (9 / 16) : size.width * 0.9),
                 height: _isFullScreen ? size.height : size.height * 0.8,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(_isFullScreen ? 0 : 30),
@@ -232,9 +235,9 @@ class _WalkthroughPageState extends State<WalkthroughPage>
                           child: Video(
                             controller: _videoController!,
                             controls: null,
-                            fit: BoxFit.cover,
+                            fit: widget.isReel ? BoxFit.contain : BoxFit.cover,
                             /// ✅ VALID WINDOWS PARAMETERS ONLY:
-                            filterQuality: FilterQuality.high,  // Fixed: Valid enum
+                            filterQuality: FilterQuality.high,
                           ),
                         )
                       else

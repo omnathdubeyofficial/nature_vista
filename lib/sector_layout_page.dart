@@ -17,7 +17,7 @@ class _SectorLayoutPageState extends State<SectorLayoutPage> with TickerProvider
   final TransformationController _transformationController = TransformationController();
   bool _isZoomed = false;
 
-  final String imagePath = "assets/plans/typical_untag.jpg";
+  final String imagePath = "assets/sector_layout/sector.jpg";
 
   @override
   void initState() {

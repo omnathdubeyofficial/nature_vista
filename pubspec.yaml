@@ -64,5 +64,8 @@ flutter:
     - assets/buildingtwo/
     - assets/NV_1st_launch/
     - assets/build/
+    - assets/sector_layout/
+    - assets/master_layout/
+    - assets/location/
     - assets/tourvideo/wolkthrow.mp4
     - assets/tourvideo/

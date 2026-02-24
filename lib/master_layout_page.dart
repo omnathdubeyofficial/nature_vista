@@ -17,7 +17,7 @@ class _MasterLayoutPageState extends State<MasterLayoutPage> with TickerProvider
   final TransformationController _transformationController = TransformationController();
   bool _isZoomed = false;
 
-  final String imagePath = "assets/plans/master_layout.jpg";
+  final String imagePath = "assets/master_layout/master_layout.jpg";
 
   @override
   void initState() {

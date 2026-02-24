@@ -9,19 +9,10 @@ class GalleryPage extends StatefulWidget {
 
 class _GalleryPageState extends State<GalleryPage> with TickerProviderStateMixin {
   final List<String> _images = [
-    'assets/build/Aerial Cam .jpg',
-    'assets/build/Balcony Cam_Day.jpg',
-    'assets/build/Balcony_Cam Night.jpg',
-    'assets/build/Cafe Area.jpg',
-    'assets/build/CAM STORY WALK.jpg',
-    'assets/build/Entry Gate Cam.jpg',
-    'assets/build/Hero Cam.jpg',
-    'assets/build/Kidsplay_cam.jpg',
-    'assets/build/Music_Cam.jpg',
     'assets/gallery/Club house cam.png',
     'assets/gallery/Common Bedroom (untag).jpg',
-    'assets/gallery/Entrance_lobby_cam02.jpg ( Untag ).jpg',
     'assets/gallery/Entrance_lobby+1 (untag).jpg',
+    'assets/gallery/Entrance_lobby_cam02.jpg ( Untag ).jpg',
     'assets/gallery/Kitchen (untag).jpg',
     'assets/gallery/Living room (untag).jpg',
     'assets/gallery/Master bedroom (untag).jpg',
