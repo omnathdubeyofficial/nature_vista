@@ -148,7 +148,7 @@ class _PlansSelectionPageState extends State<PlansSelectionPage> with TickerProv
                             tag: 'app_logo',
                             child: Image.asset(
                               'assets/images/ffe8add9-2237-444a-b0f0-6b9d75af6337-1.png',
-                              width: 230, // Slightly smaller for better tightness
+                              width: 430, // Slightly smaller for better tightness
                               fit: BoxFit.contain,
                             ),
                           ),

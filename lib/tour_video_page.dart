@@ -151,7 +151,7 @@ class _TourVideoPageState extends State<TourVideoPage> with TickerProviderStateM
                             tag: 'app_logo',
                             child: Image.asset(
                               'assets/images/ffe8add9-2237-444a-b0f0-6b9d75af6337-1.png',
-                              width: 230, // Slightly smaller for better tightness
+                              width: 530, // Slightly smaller for better tightness
                               fit: BoxFit.contain,
                             ),
                           ),
