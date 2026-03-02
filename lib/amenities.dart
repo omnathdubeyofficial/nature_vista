@@ -133,12 +133,12 @@ class _AmenitiesPageState extends State<AmenitiesPage> with TickerProviderStateM
                         textDirection: _isSwapped ? TextDirection.rtl : TextDirection.ltr,
                         children: [
                           _navButton(
-                            icon: _isSwapped ? Icons.arrow_forward_ios_rounded : Icons.arrow_back_ios_new_rounded,
+                            icon: Icons.close,
                             onTap: () => Navigator.pop(context),
                             size: 45,
                             backgroundColor: Colors.orange.shade800,
                             iconColor: Colors.white,
-                            tooltip: 'Back',
+                            tooltip: 'Close',
                           ),
                           const SizedBox(width: 15),
                           _navButton(

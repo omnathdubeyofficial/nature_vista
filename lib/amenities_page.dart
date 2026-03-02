@@ -81,7 +81,7 @@ class _AmenitiesPageState extends State<AmenitiesPage> with SingleTickerProvider
                       ),
                     ),
                     child: const Icon(
-                      Icons.arrow_back_ios_new_rounded,
+                      Icons.close,
                       color: Colors.white,
                       size: 24,
                     ),

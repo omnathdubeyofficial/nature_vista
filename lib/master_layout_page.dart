@@ -146,10 +146,10 @@ class _MasterLayoutPageState extends State<MasterLayoutPage> with TickerProvider
                       ),
                       const SizedBox(width: 12),
                       ExperienceIconButton(
-                        icon: Icons.arrow_back_rounded,
+                        icon: Icons.close,
                         onTap: () => Navigator.pop(context),
                         isDestructive: true,
-                        tooltip: 'Go Back',
+                        tooltip: 'Close',
                       ),
                     ],
                   ),

@@ -73,7 +73,7 @@ class _DoorPageState extends State<DoorPage>
                   shape: BoxShape.circle,
                 ),
                 child: const Icon(
-                  Icons.arrow_back,
+                  Icons.close,
                   color: Colors.white,
                   size: 28,
                 ),

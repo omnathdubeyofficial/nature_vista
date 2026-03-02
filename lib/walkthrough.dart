@@ -34,6 +34,7 @@ class _WalkthroughPageState extends State<WalkthroughPage>
   @override
   void initState() {
     super.initState();
+    _isFullScreen = widget.isReel; // Start in full screen for reels/teasers
     _loadFlipAlignment();
     _initVideo();
   }
@@ -379,8 +380,10 @@ class _WalkthroughPageState extends State<WalkthroughPage>
                                         margin: const EdgeInsets.symmetric(horizontal: 20)
                                       ),
 
-                                      _controlButton(Icons.swap_horiz_rounded, _handleFlip),
-                                      const SizedBox(width: 15),
+                                       if (!widget.isReel)
+                                        _controlButton(Icons.swap_horiz_rounded, _handleFlip),
+                                      if (!widget.isReel)
+                                        const SizedBox(width: 15),
 
                                       _controlButton(
                                         _isFullScreen ? Icons.fullscreen_exit_rounded : Icons.fullscreen_rounded, 

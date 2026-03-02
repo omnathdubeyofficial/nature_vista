@@ -300,10 +300,10 @@ class _Building1PageState extends State<Building1Page> with TickerProviderStateM
                                         ),
                                         const SizedBox(width: 15),
                                         ExperienceIconButton(
-                                          icon: _isRightAligned ? Icons.arrow_forward_rounded : Icons.arrow_back_rounded,
+                                          icon: Icons.close,
                                           onTap: () => Navigator.pop(context),
                                           isDestructive: true,
-                                          tooltip: 'Go Back',
+                                          tooltip: 'Close',
                                         ),
                                       ],
                                     ),

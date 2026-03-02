@@ -227,7 +227,7 @@ class _GardenPageState extends State<GardenPage>
                     children: [
                       // Back Button
                       _buildGlassButton(
-                        icon: Icons.arrow_back,
+                        icon: Icons.close,
                         onTap: () => Navigator.pop(context),
                       ),
                       const SizedBox(width: 15),

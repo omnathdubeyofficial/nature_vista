@@ -124,9 +124,9 @@ class _TourVideoPageState extends State<TourVideoPage> with TickerProviderStateM
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               _circleIcon(
-                                icon: Icons.arrow_back_rounded,
+                                icon: Icons.close,
                                 onTap: () => Navigator.pop(context),
-                                tooltip: 'Go Back',
+                                tooltip: 'Close',
                               ),
                               const SizedBox(width: 20),
                               _circleIcon(

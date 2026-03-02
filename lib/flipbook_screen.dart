@@ -144,7 +144,7 @@ class _FlipbookPageState extends State<FlipbookPage> with SingleTickerProviderSt
                            // THE CONTROL GROUP: [BACK, SWAP, PREV, NEXT]
                            _animatedPositionedElement(
                              index: 0,
-                             child: _navIconButton(Icons.arrow_back_rounded, () => Navigator.pop(context), "Go Back"),
+                             child: _navIconButton(Icons.close, () => Navigator.pop(context), "Close"),
                            ),
                            _animatedPositionedElement(
                              index: 1,
