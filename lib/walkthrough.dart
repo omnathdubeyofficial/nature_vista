@@ -380,10 +380,10 @@ class _WalkthroughPageState extends State<WalkthroughPage>
                                         margin: const EdgeInsets.symmetric(horizontal: 20)
                                       ),
 
-                                       if (!widget.isReel)
+                                       if (!widget.isReel || _isFullScreen)
                                         _controlButton(Icons.swap_horiz_rounded, _handleFlip),
-                                      if (!widget.isReel)
-                                        const SizedBox(width: 15),
+                                       if (!widget.isReel || _isFullScreen)
+                                         const SizedBox(width: 15),
 
                                       _controlButton(
                                         _isFullScreen ? Icons.fullscreen_exit_rounded : Icons.fullscreen_rounded, 
