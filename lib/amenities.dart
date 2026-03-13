@@ -19,6 +19,13 @@ class _AmenitiesPageState extends State<AmenitiesPage> with TickerProviderStateM
     'assets/build/Kidsplay cam.jpg',
     'assets/build/Music Cam.jpg',
     'assets/build/PoolCam.png',
+        'assets/gallery/Club house cam.png',
+    'assets/gallery/Common Bedroom (untag).jpg',
+    'assets/gallery/Entrance_lobby+1 (untag).jpg',
+    'assets/gallery/Entrance_lobby_cam02.jpg ( Untag ).jpg',
+    'assets/gallery/Kitchen (untag).jpg',
+    'assets/gallery/Living room (untag).jpg',
+    'assets/gallery/Master bedroom (untag).jpg',
   ];
 
   int _index = 0;

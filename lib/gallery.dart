@@ -16,6 +16,16 @@ class _GalleryPageState extends State<GalleryPage> with TickerProviderStateMixin
     'assets/gallery/Kitchen (untag).jpg',
     'assets/gallery/Living room (untag).jpg',
     'assets/gallery/Master bedroom (untag).jpg',
+    'assets/build/Hero Cam.jpg',
+    'assets/build/Aerial Cam .jpg',
+    'assets/build/Entry Gate Cam.jpg',
+    'assets/build/Balcony Cam_Day.jpg',
+    'assets/build/Balcony_Cam Night.jpg',
+    'assets/build/Cafe Area.jpg',
+    'assets/build/CAM STORY WALK.jpg',
+    'assets/build/Kidsplay cam.jpg',
+    'assets/build/Music Cam.jpg',
+    'assets/build/PoolCam.png',
   ];
 
   int _index = 0;
